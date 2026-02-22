@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useMemberStore } from "../store";
 import InputLabel from "../components/common/InputLabel";
-import Button from "../components/common/Button";
+import MyButton from "../components/common/MyButton";
 import memberApi from "../api/memberApi.mjs";
 
 function Login() {
@@ -27,11 +27,12 @@ function Login() {
       console.log(response);
     } catch (error) {
       console.error("로그인 에러", error);
-      alert(JSON.stringify(error.response.data));
+      alert("로그인 실패");
+      // alert(JSON.stringify(error.response.data));
     }
   };
   return (
-    <div className="pt-10 bg-gray-100 dark:bg-gray-900 grow">
+    <div className="pt-10 bg-white dark:bg-black grow">
       <p className="font-semibold text-3xl text-center">로그인</p>
       <form onSubmit={handleSubmit}>
         <InputLabel name="userid" label="아이디"></InputLabel>
@@ -41,7 +42,7 @@ function Login() {
           label="비밀번호"
         ></InputLabel>
         <div className="flex justify-end py-1 gap-1">
-          <Button>로그인</Button>
+          <MyButton>로그인</MyButton>
         </div>
       </form>
     </div>

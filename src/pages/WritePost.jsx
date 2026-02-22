@@ -1,7 +1,7 @@
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useMemberStore, useCategoriesStore } from "../store";
 import postApi from "../api/postApi.mjs";
-import Button from "../components/common/Button";
+import MyButton from "../components/common/MyButton";
 
 function WritePost() {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ function WritePost() {
     }
   };
   return (
-    <div className="flex flex-col flex-auto bg-gray-100 dark:bg-gray-900 grow">
+    <div className="flex flex-col flex-auto bg-white dark:bg-black grow">
       <Link to={"/category/" + abbr} className="p-1 text-2xl">
         {currentCategory.name}
       </Link>
@@ -56,7 +56,7 @@ function WritePost() {
           name="content"
         ></textarea>
         <div className="flex justify-end">
-          <Button>등록</Button>
+          <MyButton>등록</MyButton>
         </div>
       </form>
     </div>

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import InputLabel from "../components/common/InputLabel";
-import Button from "../components/common/Button";
+import MyButton from "../components/common/MyButton";
 import memberApi from "../api/memberApi.mjs";
 
 function Signup() {
@@ -23,7 +23,7 @@ function Signup() {
     }
   };
   return (
-    <div className="pt-10 bg-gray-100 dark:bg-gray-900 grow">
+    <div className="pt-10 bg-white dark:bg-black grow">
       <p className="font-semibold text-3xl text-center">회원가입</p>
       <form onSubmit={handleSubmit}>
         <InputLabel name="userid" label="아이디"></InputLabel>
@@ -34,7 +34,7 @@ function Signup() {
         ></InputLabel>
         <InputLabel name="nickname" label="닉네임"></InputLabel>
         <div className="flex justify-end py-1 gap-1">
-          <Button>등록</Button>
+          <MyButton>등록</MyButton>
         </div>
       </form>
     </div>

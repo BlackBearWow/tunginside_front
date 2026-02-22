@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useMemberStore, usePostStore } from "../store";
 import DeleteModal from "../components/common/DeleteModal";
 import InputLabel from "../components/common/InputLabel";
-import Button from "../components/common/Button";
+import MyButton from "../components/common/MyButton";
 import commentApi from "../api/commentApi.mjs";
 
 function CommentPage({ post_id }) {
@@ -135,15 +135,18 @@ function CommentPage({ post_id }) {
       {comments.map((v) => (
         <div key={v.id} className={"border ml-" + v.nestedCount}>
           <div className="flex justify-between">
-            <div className="">
-              <p>
-                {v.nickname}({v.ip_addr}) {v.create_at.slice(5, 16)}
-              </p>
+            <div className="flex gap-2 items-center">
+              <span>
+                {v.nickname}({v.ip_addr})
+              </span>
+              <span className="text-gray-500 text-sm">
+                {v.create_at.slice(5, 16).replace("T", " ")}
+              </span>
             </div>
             <div className="flex gap-1">
               {/* 내가 쓴 댓글이면 수정 버튼이 뜬다 */}
               {member && v.nickname == member.nickname && (
-                <Button
+                <MyButton
                   className="px-2"
                   onClick={() => {
                     setCommentId(v.id);
@@ -153,13 +156,13 @@ function CommentPage({ post_id }) {
                   }}
                 >
                   수정
-                </Button>
+                </MyButton>
               )}
               {/* 내가 쓴 댓글이거나 관리자면 삭제 버튼이 뜬다 */}
               {member &&
                 (v.nickname == member.nickname || member.role === "ADMIN") && (
                   <>
-                    <Button
+                    <MyButton
                       className="px-2"
                       onClick={() => {
                         setCommentId(v.id);
@@ -167,13 +170,13 @@ function CommentPage({ post_id }) {
                       }}
                     >
                       삭제
-                    </Button>
+                    </MyButton>
                   </>
                 )}
               {/* 익명이 쓴 댓글이면 수정, 삭제 버튼이 뜸 */}
               {!v.nickname && (
                 <>
-                  <Button
+                  <MyButton
                     className="px-2"
                     onClick={() => {
                       setCommentId(v.id);
@@ -183,8 +186,8 @@ function CommentPage({ post_id }) {
                     }}
                   >
                     수정
-                  </Button>
-                  <Button
+                  </MyButton>
+                  <MyButton
                     className="px-2"
                     onClick={() => {
                       setCommentId(v.id);
@@ -192,10 +195,10 @@ function CommentPage({ post_id }) {
                     }}
                   >
                     삭제
-                  </Button>
+                  </MyButton>
                 </>
               )}
-              <Button
+              <MyButton
                 className="px-2"
                 onClick={() => {
                   setCommentId(v.id);
@@ -204,7 +207,7 @@ function CommentPage({ post_id }) {
                 }}
               >
                 답글
-              </Button>
+              </MyButton>
             </div>
           </div>
           <p>{v.content}</p>
@@ -218,7 +221,7 @@ function CommentPage({ post_id }) {
                   type="password"
                 ></InputLabel>
               )}
-              <Button className="px-2">답글작성</Button>
+              <MyButton className="px-2">답글작성</MyButton>
             </form>
           )}
           {isCommentEditOpen && v.id == commentId && (
@@ -260,7 +263,7 @@ function CommentPage({ post_id }) {
             type="password"
           ></InputLabel>
         )}
-        <Button className="px-2">댓글작성</Button>
+        <MyButton className="px-2">댓글작성</MyButton>
       </form>
     </>
   );

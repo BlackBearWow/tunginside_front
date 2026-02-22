@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useMemberStore, usePostStore } from "../store";
-import Button from "../components/common/Button";
+import MyButton from "../components/common/MyButton";
 import DeleteModal from "../components/common/DeleteModal";
 import postApi from "../api/postApi.mjs";
 import CommentPage from "./CommentPage";
@@ -69,8 +69,8 @@ function PostDetail({ post_id, getPosts }) {
       <p>{post.content}</p>
       <div className="flex justify-center gap-1">
         <a>{post.post_like_count}</a>
-        <Button onClick={handleLikeClick}>좋아요👍</Button>
-        <Button onClick={handleDislikeClick}>싫어요👎</Button>
+        <MyButton onClick={handleLikeClick}>좋아요👍</MyButton>
+        <MyButton onClick={handleDislikeClick}>싫어요👎</MyButton>
         <a>{post.post_dislike_count}</a>
       </div>
       <div className="flex justify-end gap-1 p-1">
@@ -81,16 +81,16 @@ function PostDetail({ post_id, getPosts }) {
           </LinkButton>
         )}
         {!post.nickname && (
-          <Button className="px-2" onClick={() => setIsPostModalOpen(true)}>
+          <MyButton className="px-2" onClick={() => setIsPostModalOpen(true)}>
             삭제
-          </Button>
+          </MyButton>
         )}
         {post.nickname &&
           member &&
           (post.nickname === member.nickname || member.role === "ADMIN") && (
-            <Button className="px-2" onClick={deletePostCallback}>
+            <MyButton className="px-2" onClick={deletePostCallback}>
               삭제
-            </Button>
+            </MyButton>
           )}
       </div>
       <hr></hr>

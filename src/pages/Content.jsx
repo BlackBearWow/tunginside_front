@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { usePostStore } from "../store";
 import InputLabel from "../components/common/InputLabel";
-import Button from "../components/common/Button";
+import MyButton from "../components/common/MyButton";
 import PostListConfig from "./PostListConfig";
 import PostList from "./PostList";
 import PostDetail from "./PostDetail";
@@ -66,7 +66,7 @@ function Content() {
     getPosts();
   }, [abbr, page, likeCut, size, orderBy, search]);
   return (
-    <div className="flex flex-col grow bg-gray-100 dark:bg-gray-900">
+    <div className="flex flex-col grow bg-white dark:bg-black">
       {post_id == null ? (
         <PostListConfig
           config={{ likeCut, size, orderBy }}
@@ -76,10 +76,14 @@ function Content() {
         <PostDetail post_id={post_id} getPosts={getPosts}></PostDetail>
       )}
       <div className="flex-1">
-        <PostList posts={posts} isLoading={isLoading}></PostList>
+        <PostList
+          post_id={post_id}
+          posts={posts}
+          isLoading={isLoading}
+        ></PostList>
       </div>
       <hr></hr>
-      <div className="bg-orange-200 dark:bg-orange-800 py-1 pb-3">
+      <div className="py-1 pb-3">
         <form className="pb-2" onSubmit={handleSearch}>
           <InputLabel
             name="search"
@@ -87,7 +91,7 @@ function Content() {
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           ></InputLabel>
-          <Button className="px-2">검색</Button>
+          <MyButton className="px-2">검색</MyButton>
         </form>
         <Pagination page={page} abbr={abbr} search={search} />
       </div>

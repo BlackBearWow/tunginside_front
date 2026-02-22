@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useMemberStore, useCategoriesStore } from "../store";
-import Button from "../components/common/Button";
+import MyButton from "../components/common/MyButton";
 import InputLabel from "../components/common/InputLabel";
 import categoryApi from "../api/categoryApi.mjs";
 
@@ -27,13 +27,13 @@ function MakeCategory() {
     }
   };
   return (
-    <div className="pt-10 bg-gray-100 dark:bg-gray-900 grow">
+    <div className="pt-10 bg-white dark:bg-black grow">
       <p className="font-semibold text-3xl text-center">카테고리 만들기</p>
       <form onSubmit={handleSubmit}>
         <InputLabel name="name" label="카테고리 이름"></InputLabel>
         <InputLabel name="abbr" label="카테고리 줄임말(url)"></InputLabel>
         <div className="flex justify-end py-1 gap-1">
-          <Button>만들기</Button>
+          <MyButton>만들기</MyButton>
         </div>
       </form>
     </div>

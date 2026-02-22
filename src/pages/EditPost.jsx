@@ -41,7 +41,7 @@ function EditPost() {
   if (post === null) return <>asdfasf</>;
 
   return (
-    <div className="flex flex-col flex-auto bg-gray-100 dark:bg-gray-900 grow">
+    <div className="flex flex-col flex-auto bg-white dark:bg-black grow">
       <Link to={"/category/" + post.category_abbr} className="p-1 text-2xl">
         {category.name}
       </Link>

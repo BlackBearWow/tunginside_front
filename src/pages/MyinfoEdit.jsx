@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useMemberStore } from "../store";
-import Button from "../components/common/Button";
+import MyButton from "../components/common/MyButton";
 import InputLabel from "../components/common/InputLabel";
 import memberApi from "../api/memberApi.mjs";
 
@@ -26,7 +26,7 @@ function MyinfoEdit() {
     }
   };
   return (
-    <div className="pt-10 bg-gray-100 dark:bg-gray-900 grow">
+    <div className="pt-10 bg-white dark:bg-black grow">
       <p className="font-semibold text-3xl text-center">내정보 변경하기</p>
       <form onSubmit={handleSubmit}>
         <InputLabel
@@ -50,7 +50,7 @@ function MyinfoEdit() {
           type="password"
         ></InputLabel>
         <div className="flex justify-end py-1 gap-1">
-          <Button>변경하기</Button>
+          <MyButton>변경하기</MyButton>
         </div>
       </form>
     </div>

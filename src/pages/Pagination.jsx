@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/common/Button";
+import MyButton from "../components/common/MyButton";
 
 function Pagination({ page, abbr, search }) {
   const navigate = useNavigate();
@@ -27,23 +27,33 @@ function Pagination({ page, abbr, search }) {
 
   return (
     <div className="flex justify-center gap-1">
-      <Button onClick={() => pageMove(Number(page) - 3)} className="px-2 grow">
+      <MyButton
+        onClick={() => pageMove(Number(page) - 3)}
+        className="px-2 grow"
+      >
         &lt;
-      </Button>
+      </MyButton>
       {pageList.map((v, idx) =>
         v == Number(page) ? (
-          <Button key={idx} className="px-2 font-extrabold grow">
+          <MyButton key={idx} className="px-2 font-black grow">
             {v}
-          </Button>
+          </MyButton>
         ) : (
-          <Button key={idx} onClick={() => pageMove(v)} className="px-2 grow">
+          <MyButton
+            key={idx}
+            onClick={() => pageMove(v)}
+            className="px-2 font-light grow"
+          >
             {v}
-          </Button>
+          </MyButton>
         ),
       )}
-      <Button onClick={() => pageMove(Number(page) + 3)} className="px-2 grow">
+      <MyButton
+        onClick={() => pageMove(Number(page) + 3)}
+        className="px-2 grow"
+      >
         &gt;
-      </Button>
+      </MyButton>
     </div>
   );
 }

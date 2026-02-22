@@ -14,6 +14,8 @@ import CategoryList from "./pages/CategoryList";
 import Header from "./pages/Header";
 import Content from "./pages/Content";
 import AdminPage from "./pages/AdminPage";
+import Footer from "./pages/Footer";
+import FloatingActionButton from "./pages/FloatingActionButton";
 
 function App() {
   const { fetchCategories } = useCategoriesStore();
@@ -89,6 +91,8 @@ function App() {
               }
             />
           </Routes>
+          <Footer />
+          <FloatingActionButton />
         </div>
       </div>
     </BrowserRouter>

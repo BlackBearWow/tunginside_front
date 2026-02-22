@@ -1,6 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useMemberStore, useCategoriesStore } from "../store";
-import Button from "../components/common/Button";
+import MyButton from "../components/common/MyButton";
 import DisabledInputLabel from "../components/common/DisabledInputLabel";
 import memberApi from "../api/memberApi.mjs";
 import categoryApi from "../api/categoryApi.mjs";
@@ -40,7 +40,7 @@ function Myinfo() {
     }
   };
   return (
-    <div className="pt-10 bg-gray-100 dark:bg-gray-900 grow">
+    <div className="pt-10 bg-white dark:bg-black grow">
       <p className="font-semibold text-3xl text-center">내정보</p>
       <form>
         <DisabledInputLabel
@@ -52,10 +52,10 @@ function Myinfo() {
           defaultValue={member.nickname}
         ></DisabledInputLabel>
         <div className="flex justify-end py-1 gap-1">
-          <Button>
+          <MyButton>
             <Link to="/myinfoedit">내정보 변경</Link>
-          </Button>
-          <Button onClick={handleOnClick}>탈퇴하기</Button>
+          </MyButton>
+          <MyButton onClick={handleOnClick}>탈퇴하기</MyButton>
         </div>
       </form>
       <p className="font-semibold text-xl text-center">내 카테고리</p>
@@ -63,9 +63,9 @@ function Myinfo() {
         member.categoryList.map((v) => (
           <div key={v.id}>
             <a>{v.name}</a>
-            <Button onClick={(e) => handleCategoryDelete(e, v.abbr)}>
+            <MyButton onClick={(e) => handleCategoryDelete(e, v.abbr)}>
               삭제
-            </Button>
+            </MyButton>
           </div>
         ))
       ) : (

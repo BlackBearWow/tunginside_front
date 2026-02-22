@@ -6,7 +6,7 @@ function Category() {
   const { categories } = useCategoriesStore();
   const currentCategory = categories.find((v) => v.abbr === abbr);
   return (
-    <div className="bg-orange-200 dark:bg-orange-800 flex justify-between items-center px-1">
+    <div className="bg-orange-300 flex justify-between items-center px-1">
       <Link to={"/category/" + abbr} className="text-2xl">
         {currentCategory.name}
       </Link>
