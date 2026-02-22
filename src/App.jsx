@@ -11,11 +11,11 @@ import EditPost from "./pages/EditPost";
 import WritePost from "./pages/WritePost";
 import Category from "./pages/Category";
 import CategoryList from "./pages/CategoryList";
-import Header from "./pages/Header";
+import Navigation from "./pages/Navigation";
 import Content from "./pages/Content";
 import AdminPage from "./pages/AdminPage";
 import Footer from "./pages/Footer";
-import FloatingActionButton from "./pages/FloatingActionButton";
+import NotificationPage from "./pages/NotificationPage";
 
 function App() {
   const { fetchCategories } = useCategoriesStore();
@@ -34,18 +34,13 @@ function App() {
     <BrowserRouter>
       <div className="App bg-gray-50 dark:bg-gray-950 text-gray-950 dark:text-gray-50">
         <div className="min-h-screen max-w-5xl mx-auto flex flex-col">
-          <Header />
+          <Navigation />
           <Routes>
-            <Route
-              path="/adminPage"
-              element={
-                <MemberAdminRoute>
-                  <AdminPage />
-                </MemberAdminRoute>
-              }
-            />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/writePost/:abbr" element={<WritePost />} />
+            <Route path="/editPost" element={<EditPost />} />
+            <Route path="/notification" element={<NotificationPage />} />
             <Route
               path="/myinfo"
               element={
@@ -70,8 +65,14 @@ function App() {
                 </MemberAdminRoute>
               }
             />
-            <Route path="/editPost" element={<EditPost />} />
-            <Route path="/writePost/:abbr" element={<WritePost />} />
+            <Route
+              path="/adminPage"
+              element={
+                <MemberAdminRoute>
+                  <AdminPage />
+                </MemberAdminRoute>
+              }
+            />
             <Route
               path="/category/:abbr"
               element={
@@ -92,7 +93,6 @@ function App() {
             />
           </Routes>
           <Footer />
-          <FloatingActionButton />
         </div>
       </div>
     </BrowserRouter>

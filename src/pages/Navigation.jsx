@@ -1,8 +1,10 @@
 import NavigationDrawer from "../components/common/NavigationDrawer";
+import FloatingActionButton from "./FloatingActionButton";
 import { useMemberStore, useThemeStore } from "../store";
 import { Link } from "react-router-dom";
+import { Bell, House, LogIn, Menu, Search } from "lucide-react";
 
-function Header() {
+function Navigation() {
   const { member, logoutMember } = useMemberStore();
   const { toggleDarkMode } = useThemeStore();
   const handleLogout = async (e) => {
@@ -70,8 +72,28 @@ function Header() {
           </NavigationDrawer>
         </div>
       </nav>
+      <div className="fixed bottom-0 right-0 w-full">
+        <FloatingActionButton />
+        <div className="md:hidden flex min-w-full border-t border-gray-200 bg-white/95 dark:border-gray-800 dark:bg-black/95">
+          <Link to="/" className="grow flex justify-center p-3">
+            <Menu className="w-5 h-5" />
+          </Link>
+          <Link to="/" className="grow flex justify-center p-3">
+            <Search className="w-5 h-5" />
+          </Link>
+          <Link to="/" className="grow flex justify-center p-3">
+            <House className="w-5 h-5" />
+          </Link>
+          <Link to="/notification" className="grow flex justify-center p-3">
+            <Bell className="w-5 h-5" />
+          </Link>
+          <Link to="/" className="grow flex justify-center p-3">
+            <LogIn className="w-5 h-5" />
+          </Link>
+        </div>
+      </div>
     </>
   );
 }
 
-export default Header;
+export default Navigation;
