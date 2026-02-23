@@ -8,7 +8,7 @@ import {
 } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
-export default function NavigationDrawer({ title, icon, children }) {
+export default function NavigationDrawer({ title, icon, children, className }) {
   const [isOpen, setIsOpen] = useState(false);
 
   function closeDrawer() {
@@ -22,24 +22,8 @@ export default function NavigationDrawer({ title, icon, children }) {
   return (
     <>
       {/* Drawer를 여는 버튼 (예: 햄버거 메뉴 아이콘) */}
-      <button onClick={openDrawer} className="font-semibold hover:underline">
-        {icon ? (
-          `${icon}님 ▼`
-        ) : (
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16m-7 6h7"
-            />
-          </svg>
-        )}
+      <button onClick={openDrawer} className={className}>
+        {icon}
       </button>
       <Transition show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-50" onClose={closeDrawer}>
@@ -69,12 +53,15 @@ export default function NavigationDrawer({ title, icon, children }) {
                 >
                   <DialogPanel className="w-screen max-w-3xs">
                     <div className="flex h-full flex-col overflow-y-auto bg-white dark:bg-gray-900 dark:text-gray-50 p-6 border-l">
-                      <div className="flex justify-between">
-                        <DialogTitle>{title}</DialogTitle>
+                      <div className="flex justify-between mb-5">
+                        <DialogTitle className="font-extrabold text-xl">
+                          {title}
+                        </DialogTitle>
                         <Button onClick={closeDrawer}>X</Button>
                       </div>
+                      <hr />
                       <div
-                        className="flex flex-col mt-10 gap-1"
+                        className="flex flex-col mt-5 gap-1"
                         onClick={closeDrawer}
                       >
                         {children}

@@ -26,7 +26,7 @@ function Pagination({ page, abbr, search }) {
   }, [page]);
 
   return (
-    <div className="flex justify-center gap-1">
+    <div className="flex justify-center gap-1 pb-3">
       <MyButton
         onClick={() => pageMove(Number(page) - 3)}
         className="px-2 grow"

@@ -16,6 +16,7 @@ import Content from "./pages/Content";
 import AdminPage from "./pages/AdminPage";
 import Footer from "./pages/Footer";
 import NotificationPage from "./pages/NotificationPage";
+import FloatingActionButton from "./pages/FloatingActionButton";
 
 function App() {
   const { fetchCategories } = useCategoriesStore();
@@ -32,67 +33,73 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App bg-gray-50 dark:bg-gray-950 text-gray-950 dark:text-gray-50">
-        <div className="min-h-screen max-w-5xl mx-auto flex flex-col">
+      <div className="App bg-gray-50 dark:bg-gray-950 text-gray-950 dark:text-gray-50 flex h-screen overflow-hidden">
+        <div className="max-w-7xl mx-auto flex grow">
           <Navigation />
-          <Routes>
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/writePost/:abbr" element={<WritePost />} />
-            <Route path="/editPost" element={<EditPost />} />
-            <Route path="/notification" element={<NotificationPage />} />
-            <Route
-              path="/myinfo"
-              element={
-                <MemberNecessaryRoute>
-                  <Myinfo />
-                </MemberNecessaryRoute>
-              }
-            />
-            <Route
-              path="/myinfoedit"
-              element={
-                <MemberNecessaryRoute>
-                  <MyinfoEdit />
-                </MemberNecessaryRoute>
-              }
-            />
-            <Route
-              path="/makeCategory"
-              element={
-                <MemberAdminRoute>
-                  <MakeCategory />
-                </MemberAdminRoute>
-              }
-            />
-            <Route
-              path="/adminPage"
-              element={
-                <MemberAdminRoute>
-                  <AdminPage />
-                </MemberAdminRoute>
-              }
-            />
-            <Route
-              path="/category/:abbr"
-              element={
-                <>
-                  <Category />
-                  <Content />
-                </>
-              }
-            />
-            <Route
-              path="/"
-              element={
-                <>
-                  <CategoryList />
-                  <Content />
-                </>
-              }
-            />
-          </Routes>
-          <Footer />
+          <div
+            className="flex flex-col grow overflow-y-auto"
+            id="content-scroll"
+          >
+            <FloatingActionButton />
+            <Routes>
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/writePost/:abbr" element={<WritePost />} />
+              <Route path="/editPost" element={<EditPost />} />
+              <Route path="/notification" element={<NotificationPage />} />
+              <Route
+                path="/myinfo"
+                element={
+                  <MemberNecessaryRoute>
+                    <Myinfo />
+                  </MemberNecessaryRoute>
+                }
+              />
+              <Route
+                path="/myinfoedit"
+                element={
+                  <MemberNecessaryRoute>
+                    <MyinfoEdit />
+                  </MemberNecessaryRoute>
+                }
+              />
+              <Route
+                path="/makeCategory"
+                element={
+                  <MemberAdminRoute>
+                    <MakeCategory />
+                  </MemberAdminRoute>
+                }
+              />
+              <Route
+                path="/adminPage"
+                element={
+                  <MemberAdminRoute>
+                    <AdminPage />
+                  </MemberAdminRoute>
+                }
+              />
+              <Route
+                path="/category/:abbr"
+                element={
+                  <>
+                    <Category />
+                    <Content />
+                  </>
+                }
+              />
+              <Route
+                path="/"
+                element={
+                  <>
+                    <CategoryList />
+                    <Content />
+                  </>
+                }
+              />
+            </Routes>
+            <Footer />
+          </div>
         </div>
       </div>
     </BrowserRouter>
