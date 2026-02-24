@@ -66,7 +66,7 @@ function PostDetail({ post_id, getPosts }) {
         {post.post_like_count} | 댓글{post.comment_count}
       </p>
       <hr></hr>
-      <p>{post.content}</p>
+      <div className="whitespace-pre-wrap">{post.content}</div>
       <div className="flex justify-center gap-1">
         <a>{post.post_like_count}</a>
         <MyButton onClick={handleLikeClick}>좋아요👍</MyButton>
