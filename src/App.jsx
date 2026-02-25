@@ -1,7 +1,12 @@
 import "./App.css";
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import { useCategoriesStore, useMemberStore, useThemeStore } from "./store";
+import {
+  useCategoriesStore,
+  useMemberStore,
+  useThemeStore,
+  useAnnouncementsStore,
+} from "./store";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Myinfo from "./pages/Myinfo";
@@ -21,10 +26,12 @@ import FloatingActionButton from "./pages/FloatingActionButton";
 function App() {
   const { fetchCategories } = useCategoriesStore();
   const { fetchMember } = useMemberStore();
+  const { fetchAnnouncements } = useAnnouncementsStore();
   const { isDarkMode } = useThemeStore();
   useEffect(() => {
     fetchCategories();
     fetchMember();
+    fetchAnnouncements();
   }, []);
   useEffect(() => {
     if (isDarkMode) document.documentElement.classList.add("dark");

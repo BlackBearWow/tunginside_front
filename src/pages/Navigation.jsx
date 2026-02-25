@@ -1,4 +1,4 @@
-import { useThemeStore } from "../store";
+import { useThemeStore, useAnnouncementsStore } from "../store";
 import { Link } from "react-router-dom";
 import { Bell, House, Moon, Search, Sun } from "lucide-react";
 import NavigationDrawerMenu from "./NavigationDrawerMenu";
@@ -6,7 +6,8 @@ import NavigationDrawerAuth from "./NavigationDrawerAuth";
 
 function Navigation() {
   const { isDarkMode, toggleDarkMode } = useThemeStore();
-
+  const { getUnreadCount } = useAnnouncementsStore();
+  const unreadCount = getUnreadCount();
   return (
     <>
       {/* 사이드 네비게이션 */}
@@ -20,8 +21,16 @@ function Navigation() {
         <Link to="/" className="flex flex-col justify-center p-3">
           <Search className="w-5 h-5 mx-auto" /> 검색
         </Link>
-        <Link to="/notification" className="flex flex-col justify-center p-3">
+        <Link
+          to="/notification"
+          className="flex flex-col justify-center p-3 relative"
+        >
           <Bell className="w-5 h-5 mx-auto" /> 알림
+          {unreadCount > 0 && (
+            <span className="absolute top-1 rounded-full bg-red-500 h-4 w-4 text-center justify-center items-center p-0 ml-4 text-xs">
+              {unreadCount > 9 ? "9+" : unreadCount}
+            </span>
+          )}
         </Link>
         <div
           className="flex flex-col justify-center p-3"
@@ -49,8 +58,16 @@ function Navigation() {
         <Link to="/" className="grow flex justify-center p-3">
           <House className="w-5 h-5" />
         </Link>
-        <Link to="/notification" className="grow flex justify-center p-3">
+        <Link
+          to="/notification"
+          className="grow flex justify-center p-3 relative"
+        >
           <Bell className="w-5 h-5" />
+          {unreadCount > 0 && (
+            <span className="absolute top-1 rounded-full bg-red-500 h-4 w-4 text-center justify-center items-center p-0 ml-4 text-xs">
+              {unreadCount > 9 ? "9+" : unreadCount}
+            </span>
+          )}
         </Link>
         <NavigationDrawerAuth className="grow flex justify-center p-3" />
       </div>

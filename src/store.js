@@ -68,6 +68,56 @@ const useCategoriesStore = create(
   ),
 );
 
+const useAnnouncementsStore = create(
+  persist(
+    (set, get) => ({
+      announcements: [],
+      readAnnouncements: [],
+      // 공지사항 데이터 불러오기 함수.
+      fetchAnnouncements: async () => {
+        // const response = await announcementApi.get();
+        // set({announcements: response.data});
+        set({
+          announcements: [
+            {
+              id: 1,
+              title: "첫번째 공지사항",
+              content: "퉁인사이드 첫번째 공지사항!",
+            },
+            {
+              id: 2,
+              title: "2월 25일 공지",
+              content: "2월 25일부로 공지사항 알림이 추가됩니다",
+            },
+            {
+              id: 3,
+              title: "세번째 공지사항",
+              content: "퉁인사이드 세번째 공지사항!",
+            },
+          ],
+        });
+      },
+      addReadAnnouncementId: (id) =>
+        set((state) => ({
+          readAnnouncements: state.readAnnouncements.includes(id)
+            ? state.readAnnouncements
+            : [...state.readAnnouncements, id],
+        })),
+      //미읽음 개수 계산 함수(Derived State)
+      getUnreadCount: () => {
+        const { announcements, readAnnouncements } = get();
+        const allIds = announcements.map((v) => v.id);
+        return allIds.filter((id) => !readAnnouncements.includes(id)).length;
+      },
+    }),
+    {
+      name: "announcement-storage",
+      // announcements는 저장하지 않고, readAnnouncements만 저장한다.
+      partialize: (state) => ({ readAnnouncements: state.readAnnouncements }),
+    },
+  ),
+);
+
 const useThemeStore = create(
   persist(
     (set) => ({
@@ -78,4 +128,10 @@ const useThemeStore = create(
   ),
 );
 
-export { useMemberStore, useCategoriesStore, usePostStore, useThemeStore };
+export {
+  useMemberStore,
+  useCategoriesStore,
+  usePostStore,
+  useThemeStore,
+  useAnnouncementsStore,
+};
