@@ -2,6 +2,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { useMemberStore, useCategoriesStore } from "../store";
 import postApi from "../api/postApi.mjs";
 import MyButton from "../components/common/MyButton";
+import ReactQuill from "react-quill";
 
 function WritePost() {
   const navigate = useNavigate();
@@ -49,12 +50,18 @@ function WritePost() {
           placeholder="글제목"
           name="title"
         ></input>
-        <textarea
+        <ReactQuill
+          className="flex-auto"
+          theme="snow"
+          placeholder="글 내용"
+          name="content"
+        />
+        {/* <textarea
           className="border p-1 flex-auto"
           cols=""
           placeholder="글 내용"
           name="content"
-        ></textarea>
+        ></textarea> */}
         <div className="flex justify-end">
           <MyButton>등록</MyButton>
         </div>
